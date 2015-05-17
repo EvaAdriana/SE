@@ -16,7 +16,7 @@ public class Maestro {
     
     int tamañoAnt_Con=20;
     int numAnt_Con=5; //variable para definir maximo de antecedentes y consecuentes.
-    int tamanoAntecedente=((tamañoAnt_Con*numAnt_Con)+(numAnt_Con-1))*2;
+    int tamanoAntecedente=((tamañoAnt_Con*numAnt_Con))*2;
     int tamañoConsecuente=tamanoAntecedente;
     int tamañoRegistro=tamanoAntecedente+tamañoAnt_Con+6;
             
@@ -68,17 +68,17 @@ public class Maestro {
         maestro.writeInt(llave);
         for (int i = 0; i < antecedente.length; i++) {
             manager.m_EscribirString(antecedente[i], tamañoAnt_Con, maestro);
-            if(i<antecedente.length-1){
+           /* if(i<antecedente.length-1){
                 manager.m_EscribirString(operadoresAnt[i], 1, maestro);
-            }
+            }*/
             
         }
         
         for (int i = 0; i < consecuente.length; i++) {
             manager.m_EscribirString(consecuente[i], tamañoAnt_Con, maestro);
-            if(i<consecuente.length-1){
+          /*  if(i<consecuente.length-1){
                 manager.m_EscribirString(operadoresCons[i], 1, maestro);
-            }
+            }*/
             
         }
         

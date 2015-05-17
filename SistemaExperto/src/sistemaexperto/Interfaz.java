@@ -97,15 +97,26 @@ public class Interfaz {
         public void actionPerformed(ActionEvent e) {
             try {
                 Hechos datos=  new Hechos();
-                datos.eliminarArchivo();
+   
                 if(sexo[0].isSelected())
-                { datos.Escribir("Sexo",Etiqueta[0]);}
+                { datos.Escribir(Etiqueta[0]);}
                 if(sexo[1].isSelected())
-                { datos.Escribir("Sexo",Etiqueta[1]);}
+                { datos.Escribir(Etiqueta[1]);}
                 for (int i = 2; i < Etiqueta.length; i++) {
+                    System.out.println("hola1");
                      if (i!=12){
-                   datos.Escribir(Etiqueta[i], String.valueOf(Spinners[i].getValue()));}
+                         if( Double.valueOf(String.valueOf(Spinners[i].getValue()))!=0){
+                             
+                             datos.Escribir(Etiqueta[i], Double.valueOf(String.valueOf(Spinners[i].getValue())));
+                            
+                         }
+          
+                     }
                 }
+           
+                Inferencia doInferencia=new Inferencia();
+               
+                //datos.eliminarArchivo();
                  
                
 //            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

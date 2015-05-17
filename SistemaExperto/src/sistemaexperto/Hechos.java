@@ -5,49 +5,61 @@
  */
 package sistemaexperto;
 
+import contenedor.FileManager;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author EVAADRIANA
  */
 public class Hechos {
-    
+    /*
     File archivo;
-    FileWriter escribir;
+    FileWriter escribir;*/
+    
+    FileManager manager = new FileManager();
+    RandomAccessFile hechos;
+    String UrlArchivoHechos="archivos/hechos";
+    
+    int tamañoHecho=20;
+    
     public Hechos(){
-
         try {
-            //Crear un objeto File se encarga de crear o abrir acceso a un archivo que se especifica en su constructor
-            archivo = new File("hechos.txt");
-
-            //Crear objeto FileWriter que sera el que nos ayude a escribir sobre archivo
-            escribir = new FileWriter(archivo, true);
-
-            //Escribimos en el archivo con el metodo write 
-          // escribir.write(saludo);
-
-            //Cerramos la conexion
-           escribir.close();
-        } //Si existe un problema al escribir cae aqui
-        catch (Exception e) {
-            System.out.println("Error al escribir");
+            hechos=manager.Abrir(UrlArchivoHechos);
+        } catch (IOException ex) {
+            Logger.getLogger(Hechos.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
     
-    public void Escribir(String dato, String valor) throws IOException{
-        escribir = new FileWriter(archivo, true);
-        escribir.write(dato);
-        escribir.write(",");
-        escribir.write(valor);
-        escribir.write("\r\n");
-        escribir.close();
+    public void Escribir(String valor) throws IOException{
+        //Escribe un registro de 2 campos cada uno de tamaño 20
+        // 20 caracteres + 20 caracteres           .
+        hechos.seek(hechos.length());
+        manager.m_EscribirString(valor, tamañoHecho, hechos);
+     
     }
     
-     public void eliminarArchivo(){
-        archivo.delete();
+    public void Escribir(String dato, double valor) throws IOException{
+        //escribe el nombre de un dato en un registro de 20 caracteres y su valor 
+        //como tipo de dato double 8 bytes
+        //20 caracteres + 8 bytes
+        hechos.seek(hechos.length());
+        manager.m_EscribirString(dato, tamañoHecho, hechos);
+        hechos.writeDouble(valor);
+        System.out.println("se escrivio un dato con valor double");
+    }
+    
+    
+     public void eliminarArchivo() throws IOException{
+       hechos.close();
+         System.out.println("cerrado");
+       //new File(UrlArchivoHechos).delete();
+         //System.out.println("eliminado");
     }
 }

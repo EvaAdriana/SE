@@ -97,7 +97,7 @@ public class Interfaz {
         public void actionPerformed(ActionEvent e) {
             try {
                 Hechos datos=  new Hechos();
-   
+                /*
                 if(sexo[0].isSelected())
                 { datos.Escribir(Etiqueta[0]);}
                 if(sexo[1].isSelected())
@@ -112,11 +112,13 @@ public class Interfaz {
                          }
           
                      }
-                }
+                }*/
+                datos.Escribir("b");
+                datos.Escribir("c");
            
                 Inferencia doInferencia=new Inferencia();
                
-                //datos.eliminarArchivo();
+                datos.eliminarArchivo();
                  
                
 //            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

@@ -58,8 +58,8 @@ public class Hechos {
     
      public void eliminarArchivo() throws IOException{
        hechos.close();
-         System.out.println("cerrado");
-       //new File(UrlArchivoHechos).delete();
-         //System.out.println("eliminado");
+       System.out.println("cerrado");
+       new File(UrlArchivoHechos).delete();
+         System.out.println("eliminado");
     }
 }

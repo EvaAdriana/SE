@@ -3,6 +3,8 @@ package contenedor;
 
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -14,6 +16,26 @@ public class Contenedor {
    Maestro master = new Maestro();
    static Arbol tree = new Arbol();
    static Indice indice = new Indice();
+   
+   public void insertarMaestro(int llave, String regla){
+       
+       try {
+          // System.out.println("soy eva");
+         master.insertar(llave,regla);
+       } catch (Exception ex) {
+           Logger.getLogger(Contenedor.class.getName()).log(Level.SEVERE, null, ex);
+       }
+   }
+   
+   public void actualizarMaestro(int llave, String campo, String campoNuevo){
+       
+       try {
+           System.out.println("soy adri");
+            master.modificar(llave, campo, campoNuevo);
+       } catch (Exception ex) {
+           Logger.getLogger(Contenedor.class.getName()).log(Level.SEVERE, null, ex);
+       }
+   }
    
     public static void main(String[] args) throws IOException {
        

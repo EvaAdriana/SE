@@ -177,10 +177,10 @@ public class Maestro {
            // System.out.println("caxmp  "+posCampo);
             switch (campo.charAt(0)) {
                 case 'A': 
-                case 'C': posicion=((posCampo-1)*(tamañoAnt_Con*2))+((posCampo-1)*2)+Ant_Con;
+                case 'C': posicion=((posCampo-1)*(tamañoAnt_Con*2))+Ant_Con;
                           tamaño=tamañoAnt_Con;
                     break;
-                case 'O': posicion=(posCampo*(tamañoAnt_Con*2))+((posCampo-1)*2)+Ant_Con;
+                case 'O': posicion=(posCampo*(tamañoAnt_Con*2))+Ant_Con;
                           tamaño=1;
                     break;
                 default:

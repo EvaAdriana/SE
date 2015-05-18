@@ -260,60 +260,18 @@ public class Interfaz extends contenedor.Contenedor {
         public void actionPerformed(ActionEvent e) {
             try {
 
-                Hechos datos=  new Hechos();
-                /*
-                if(sexo[0].isSelected())
-                { datos.Escribir(Etiqueta[0]);}
-                if(sexo[1].isSelected())
-                { datos.Escribir(Etiqueta[1]);}
-                for (int i = 2, j=0; i < Etiqueta.length; i++) {
-                    if(MayorMenor[j].isSelected()){
-                         datos.Escribir(Etiqueta[i]);
-                         datos.Escribir(MayorMenor[j].getText());
-                         j=j+2;
-                     }else{
-
-                Hechos datos = new Hechos();
-
-                if (sexo[0].isSelected()) {
-                    datos.Escribir(Etiqueta[0]);
-                }
-                if (sexo[1].isSelected()) {
-                    datos.Escribir(Etiqueta[1]);
-                }
-                for (int i = 2, j = 0; i < Etiqueta.length; i++) {
-                    if (MayorMenor[j].isSelected()) {
-                        datos.Escribir(Etiqueta[i]);
-                        datos.Escribir(MayorMenor[j].getText());
-                        j = j + 2;
-                    } else {
->>>>>>> e28de5ded3f8d7e2edbfffa3d4daed2bc9f0e47a
-                        j++;
-                        if (MayorMenor[j].isSelected()) {
-                            datos.Escribir(Etiqueta[i]);
-                            datos.Escribir(MayorMenor[j].getText());
-                        }
-                        j++;
-                    }
-                } //fin del cliclo for
-
-                        */
+              Hechos datos=  new Hechos();
+                
               datos.Escribir("b");
               datos.Escribir("c");
+              datos.Escribir("d");
+              datos.Escribir("x");
+              datos.Escribir("e");
            
              Inferencia doInferencia=new Inferencia();
                
-             //datos.eliminarArchivo();
-                 
-               
-
-                //  datos.Escribir("b");
-                //  datos.Escribir("c");
-
-            //    Inferencia doInferencia=new Inferencia();
-               // datos.eliminarArchivo();
-
-//            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+             datos.eliminarArchivo();
+          //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             } catch (Exception ex) {
             }
         }

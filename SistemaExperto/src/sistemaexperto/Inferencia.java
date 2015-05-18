@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sistemaexperto;
 
 import contenedor.*;
@@ -53,8 +48,8 @@ public class Inferencia {
             System.out.println("CC vacio");
         } else {
             while (!conjuntoConflicto.isEmpty()) {
-                System.out.println(conjuntoConflicto.poll());
-            }
+             System.out.println(conjuntoConflicto.poll());
+    }
         }
     }
 
@@ -64,10 +59,11 @@ public class Inferencia {
            
             try {
                 BaseConocimientos.seek(cc.peek());
+                reglasVisitadas.add(cc.peek());
                 String nuevoHecho=manager.formar_string(BaseConocimientos, tamañoAnt_Con);
                 BaseHechos.seek(0);
                 while(BaseHechos.getFilePointer()<BaseHechos.length()){
-                    if(nuevoHecho.equalsIgnoreCase(manager.formar_string(BaseHechos, tamañoAnt_Con))){
+                    if(nuevoHecho.equalsIgnoreCase(manager.formar_string(BaseHechos, 20))){
                         alcanzado=true;
                     }else{
                         alcanzado=false;
@@ -88,19 +84,8 @@ public class Inferencia {
 
     public void encadenamientoProgresivo() {
        
-       /* try {
-            llenarArbol();
-            do{
-                equiparacion();
-            }
-            while(!resolucion(conjuntoConflicto));
-            BaseHechos.seek(BaseConocimientos.length()-tamañoAnt_Con);
-            String meta = manager.formar_string(BaseHechos, tamañoAnt_Con);
-            System.out.println("Resultado: "+meta);
-            
-        } catch (IOException ex) {
-            Logger.getLogger(Inferencia.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+      
+   
     }
 
     public void llenarArbol() {
@@ -132,13 +117,14 @@ public class Inferencia {
         System.out.println("Equiparando Regla: " + raiz.llave + "," + raiz.pos);
         try {
             for (int i = 0; i < 5; i++) {
+                
                 BaseConocimientos.seek(raiz.pos + 4 + ((40)*5) + (40*i));
                 String ant = manager.formar_string(BaseConocimientos, 20);
                 BaseHechos.seek(0);//coloca el apuntador en el inicio de la base de hechos
                                    //Para cada antecedente debe leerse toda la base de hechos
                 while (BaseHechos.getFilePointer() < BaseHechos.length()) {
                     String fact = manager.formar_string(BaseHechos, 20);
-                    //if (ant.length() != 0) {
+                    if (ant.length() != 0) {
                         System.out.println("Hecho: "+fact+" Ant: "+ant);
                         if (fact.equalsIgnoreCase(ant)) {
                             flag = true;
@@ -148,14 +134,16 @@ public class Inferencia {
                             //System.out.println(flag);
                             flag = false;
                         }
-                    //}
+                    }
                 }
                 if(!flag){
-                    break;
+                   break;
                 }
             }if(flag){
-                        conjuntoConflicto.add(raiz.pos);
-                    }
+                if(!reglasVisitadas.contains(raiz.pos)){
+                    conjuntoConflicto.add(raiz.llave);
+                }     
+             }
         } catch (IOException ex) {
             Logger.getLogger(Inferencia.class.getName()).log(Level.SEVERE, null, ex);
         }

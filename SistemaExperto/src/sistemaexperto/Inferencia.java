@@ -42,7 +42,8 @@ public class Inferencia {
         } catch (IOException ex) {
             Logger.getLogger(Inferencia.class.getName()).log(Level.SEVERE, null, ex);
         }
-        encadenamientoProgresivo();
+        llenarArbol();
+        equiparacion();
         BaseHechos.close();
     }
 
@@ -86,7 +87,8 @@ public class Inferencia {
     }
 
     public void encadenamientoProgresivo() {
-        try {
+       
+       /* try {
             llenarArbol();
             do{
                 equiparacion();
@@ -98,7 +100,7 @@ public class Inferencia {
             
         } catch (IOException ex) {
             Logger.getLogger(Inferencia.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
     }
 
     public void llenarArbol() {
@@ -130,19 +132,13 @@ public class Inferencia {
         System.out.println("Equiparando Regla: " + raiz.llave + "," + raiz.pos);
         try {
             for (int i = 0; i < 5; i++) {
-                
-                if (i == 0) { //Coloca el apuntador en el antecedente correspondiente
-                    BaseConocimientos.seek(raiz.pos + tamañoLave + ((tamañoAnt_Con * 5) + 8) + (i * tamañoAnt_Con));
-                } else { //Coloca el apuntador en el antecedente correspondiente si no es el primero salta el operador
-                    BaseConocimientos.seek(raiz.pos + tamañoLave + ((tamañoAnt_Con * 5) + 8) + (i * tamañoAnt_Con) + 2);
-                }
+                BaseConocimientos.seek(raiz.pos + 4 + ((40)*5) + (40*i));
                 String ant = manager.formar_string(BaseConocimientos, 20);
                 BaseHechos.seek(0);//coloca el apuntador en el inicio de la base de hechos
                                    //Para cada antecedente debe leerse toda la base de hechos
                 while (BaseHechos.getFilePointer() < BaseHechos.length()) {
                     String fact = manager.formar_string(BaseHechos, 20);
-                   
-                    if (ant.length() != 0) {
+                    //if (ant.length() != 0) {
                         System.out.println("Hecho: "+fact+" Ant: "+ant);
                         if (fact.equalsIgnoreCase(ant)) {
                             flag = true;
@@ -152,7 +148,7 @@ public class Inferencia {
                             //System.out.println(flag);
                             flag = false;
                         }
-                    }
+                    //}
                 }
                 if(!flag){
                     break;
